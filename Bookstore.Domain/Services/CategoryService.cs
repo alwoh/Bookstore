@@ -30,25 +30,37 @@ namespace Bookstore.Domain.Services
 
         //public Task<IEnumerable<Category>> FindAsync(Expression<Func<Category, bool>> predicate) => _categoryRepository.FindAsync(predicate);
 
-        public Task AddAsync(Category category) => _categoryRepository.AddAsync(category);
+        public async Task<Category> AddAsync(Category category)
+        {
+            if (_categoryRepository.FindAsync(c => c.Name == category.Name).Result.Any())
+                return null;
 
-        public Task UpdateAsync(Category category) => _categoryRepository.UpdateAsync(category);
+            await _categoryRepository.AddAsync(category);
+            return category;
+        }
 
-        public async Task DeleteAsync(int id)
+        public async Task<Category> UpdateAsync(Category category)
+        {
+            if (_categoryRepository.FindAsync(c => c.Name == category.Name && c.Id != category.Id).Result.Any())
+                return null;
+
+            await _categoryRepository.UpdateAsync(category);
+            return category;
+        }
+
+
+        public async Task<bool> DeleteAsync(int id)
         {
             var category = await _categoryRepository.GetByIdAsync(id);
             if (category == null)
-            {
-            throw new KeyNotFoundException("Category not found.");
-            }
+                return false;
 
             var booksWithCategory = await _bookService.GetBooksByCategory(category.Id);
             if (booksWithCategory.Any())
-            {
-            throw new InvalidOperationException("Cannot delete category as it is associated with existing books.");
-            }
+                return false;
 
-            await _categoryRepository.DeleteAsync(category.Id);
+            await _categoryRepository.DeleteAsync(category.Id);    
+            return true;
         }
 
         public async Task<int> SaveChangesAsync()

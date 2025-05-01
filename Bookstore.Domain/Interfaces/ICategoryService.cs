@@ -11,9 +11,9 @@ namespace Bookstore.Domain.Interfaces
         Task<IEnumerable<Category>> GetAllAsync();
         Task<Category> GetByIdAsync(int id);
         Task<IEnumerable<Category>> FindAsync(string categoryName);
-        Task AddAsync(Category category);
-        Task UpdateAsync(Category category);
-        Task DeleteAsync(int id);
+        Task<Category> AddAsync(Category category);
+        Task<Category> UpdateAsync(Category category);
+        Task<bool> DeleteAsync(int id);
         Task<int> SaveChangesAsync();        
     }
 }

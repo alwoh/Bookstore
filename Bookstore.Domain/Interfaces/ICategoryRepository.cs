@@ -4,6 +4,6 @@ namespace Bookstore.Domain.Interfaces
 {
     public interface ICategoryRepository : IRepository<Category>
     {
-        Task DeleteAsync(int id);
+        // No additional methods for now        
     }
 }

@@ -37,13 +37,14 @@ namespace Bookstore.Infrastructure.Repositories
 
         public virtual async Task AddAsync(T entity)
         {
-            await _dbSet.AddAsync(entity);
+            _dbSet.Add(entity);
+            await SaveChangesAsync();
         }
 
-        public virtual Task UpdateAsync(T entity)
+        public virtual async Task UpdateAsync(T entity)
         {
             _dbSet.Update(entity);
-            return Task.CompletedTask;
+            await SaveChangesAsync();
         }
 
         public virtual async Task DeleteAsync(int id)

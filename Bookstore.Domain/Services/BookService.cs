@@ -26,7 +26,7 @@ namespace Bookstore.Domain.Services
             return await _bookRepository.GetAllAsync();
         }
 
-        public async Task AddAsync(Book book)
+        public async Task<Book> AddAsync(Book book)
         {
             var existingBook = await _bookRepository.FindAsync(b => b.Name == book.Name);
             if (existingBook.Any())
@@ -35,9 +35,10 @@ namespace Bookstore.Domain.Services
             }
 
             await _bookRepository.AddAsync(book);
+            return book;
         }
 
-        public async Task UpdateAsync(Book book)
+        public async Task<Book> UpdateAsync(Book book)
         {
             var existingBook = await _bookRepository.FindAsync(b => b.Name == book.Name && b.Id != book.Id);
             if (existingBook.Any())
@@ -46,11 +47,13 @@ namespace Bookstore.Domain.Services
             }
 
             await _bookRepository.UpdateAsync(book);
+            return book;
         }
 
-        public async Task DeleteAsync(int id)
+        public async Task<bool> DeleteAsync(int id)
         {
             await _bookRepository.DeleteAsync(id);
+            return true;
         }
 
         public async Task<int> SaveChangesAsync()
