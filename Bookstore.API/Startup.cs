@@ -40,6 +40,17 @@ public class Startup
         });
 
         services.ResolveDependencies();
+
+        services.AddCors(options =>
+        {
+            options.AddPolicy("AllowAllOrigins",
+                builder =>
+                {
+                    builder.AllowAnyOrigin()
+                           .AllowAnyMethod()
+                           .AllowAnyHeader();
+                });
+        });
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -68,6 +79,9 @@ public class Startup
 
         app.UseHttpsRedirection();
         app.UseStaticFiles();
+
+        // Move UseCors here
+        app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
         app.UseRouting();
 

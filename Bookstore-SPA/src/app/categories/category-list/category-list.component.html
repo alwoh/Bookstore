@@ -1,0 +1,33 @@
+<div class="container mt-4">
+  <h2>Category Management</h2>
+
+  <!-- Search Category Form -->
+  <form class="mb-4">
+    <div class="form-group">
+      <label for="searchCategory">Search Category</label>
+      <input type="text" class="form-control" id="searchCategory" placeholder="Search category" (input)="searchCategory($any($event.target).value)" />
+    </div>
+  </form>
+
+  <!-- Category Table -->
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let category of categories; let i = index">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>{{ category.name }}</td>
+        <td>
+          <button class="btn btn-warning btn-sm mr-2" (click)="editCategory(category)">Edit</button>
+          <button class="btn btn-danger btn-sm" (click)="deleteCategory(category.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+

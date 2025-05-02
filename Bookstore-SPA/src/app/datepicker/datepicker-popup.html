@@ -1,0 +1,21 @@
+<div class="container mt-3">
+    <div class="form-group">
+        <label for="datepicker">Select a Date:</label>
+        <div class="input-group">
+            <input
+                type="text"
+                class="form-control"
+                name="dp"
+                placeholder="MM/DD/YYYY"
+                [(ngModel)]="model"                
+                ngbDatepicker
+				#d="ngbDatepicker"
+            />
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="button" (click)="d.toggle()>
+                    <i class="fa fa-calendar"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
