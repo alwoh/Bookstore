@@ -68,11 +68,9 @@ export class CategoryListComponent implements OnInit {
     }
   }
 
-  public searchCategory(searchTerm: string): void {
-    console.log('Search term:', searchTerm);
+  public searchCategory(searchTerm: string): void {    
     // Implement the logic to filter categories based on the search term
-    // this.searchValueChanged.next(this.searchTerm);
-    
+    this.searchValueChanged.next(this.searchTerm);    
   }
 
   private search() {

@@ -21,6 +21,7 @@ import { BookListComponent } from './books/book-list/book-list.component';
 import { HomeComponent } from './home/home.component';
 import { NavComponent } from './nav/nav.component';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
+import { NgbdDatepickerPopup } from './datepicker/datepicker-popup';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-
     HomeComponent,
     NavComponent,
     ConfirmationDialogComponent,
+    NgbdDatepickerPopup
   ],
   imports: [
     BrowserModule,
@@ -39,7 +41,7 @@ import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-
     NgbModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    FormsModule
+    FormsModule,
   ],
   providers: [
     provideHttpClient(), 

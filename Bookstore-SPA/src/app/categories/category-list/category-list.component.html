@@ -5,29 +5,33 @@
   <form class="mb-4">
     <div class="form-group">
       <label for="searchCategory">Search Category</label>
-      <input type="text" class="form-control" id="searchCategory" placeholder="Search category" (input)="searchCategory($any($event.target).value)" />
+    <input type="text" class="form-control" placeholder="Search category" name="searchTerm" [(ngModel)]="searchTerm" (ngModelChange)="searchCategory(searchTerm)" />
     </div>
   </form>
+<!-- Add Category Button -->
+<div class="mb-3">
+    <button class="btn btn-success" (click)="addCategory()">New Category</button>
+</div>
 
   <!-- Category Table -->
-  <table class="table table-striped">
+<table class="table table-striped">
     <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Name</th>
-        <th scope="col">Actions</th>
-      </tr>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Actions</th>
+        </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let category of categories; let i = index">
-        <th scope="row">{{ i + 1 }}</th>
-        <td>{{ category.name }}</td>
-        <td>
-          <button class="btn btn-warning btn-sm mr-2" (click)="editCategory(category)">Edit</button>
-          <button class="btn btn-danger btn-sm" (click)="deleteCategory(category.id)">Delete</button>
-        </td>
-      </tr>
+        <tr *ngFor="let category of categories; let i = index">
+            <th scope="row">{{ i + 1 }}</th>
+            <td>{{ category.name }}</td>
+            <td>
+                <button class="btn btn-warning btn-sm me-2" (click)="editCategory(category)">Edit</button>
+                <button class="btn btn-danger btn-sm ms-2" (click)="deleteCategory(category.id)">Delete</button>
+            </td>
+        </tr>
     </tbody>
-  </table>
+</table>
 </div>
 

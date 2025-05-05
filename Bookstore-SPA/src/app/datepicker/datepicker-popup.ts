@@ -3,6 +3,7 @@ import {NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'ngbd-datepicker-popup',
+  standalone: false,
   templateUrl: './datepicker-popup.html'
 })
 
