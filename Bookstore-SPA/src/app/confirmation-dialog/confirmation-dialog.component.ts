@@ -18,7 +18,7 @@ export class ConfirmationDialogComponent implements OnInit {
   ngOnInit(): void {}
 
   public decline(): void {
-    this.activeModal.close(false);
+    this.activeModal.dismiss(false);
   }
   public accept(): void {
     this.activeModal.close(true);

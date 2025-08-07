@@ -22,7 +22,20 @@ export class CategoryComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Additional initialization logic if needed
+    this.route.paramMap.subscribe(params => {
+      const id = Number(params.get('id'));
+      if (id && id > 0) {
+        this.categoryService.getById(id).subscribe({
+          next: (category) => {
+            this.category = category;
+          },
+          error: () => {
+            this.toastr.error('Failed to load category.');
+            this.router.navigate(['/categories']);
+          }
+        });
+      }
+    });
   }
 
   onSubmit(form: NgForm): void {

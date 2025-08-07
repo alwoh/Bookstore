@@ -1,4 +1,4 @@
-<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="confirmationDialogTitle" aria-hidden="true">
+<div class="modal fade show" tabindex="-1" role="dialog" aria-labelledby="confirmationDialogTitle" aria-hidden="false" style="display: block;">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -11,8 +11,8 @@
         <p>{{ message }}</p>
       </div>
       <div class="modal-footer">
-        <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="dismiss()">{{ cancelButtonText }}</button>
-        <button type="button" class="btn btn-primary" (click)="accept()">{{ okButtonText }}</button> -->
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="decline()">{{ cancelButtonText }}</button>
+        <button type="button" class="btn btn-primary" (click)="accept()">{{ okButtonText }}</button>
       </div>
     </div>
   </div>

@@ -12,13 +12,13 @@ namespace Bookstore.API.Configuration
         {
             services.AddScoped<BookstoreDbContext>();
 
-            // Register services
-            services.AddScoped<IBookService, BookService>();
-            services.AddScoped<ICategoryService, CategoryService>();
-
             // Register repositories
             services.AddScoped<IBookRepository, BookRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
+
+            // Register services
+            services.AddScoped<IBookService, BookService>();
+            services.AddScoped<ICategoryService, CategoryService>();            
 
             return services;
         }

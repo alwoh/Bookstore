@@ -55,17 +55,17 @@ export class CategoryListComponent implements OnInit {
   }
 
   public deleteCategory(categoryId: number) {
-    if (confirm('Do you really want to delete this category?')) {
+    this.confirmationDialogService.confirm('Do you really want to delete this category?').then(() => {
       this.service.remove(categoryId).subscribe({
-      next: () => {
-        this.toastr.success('The category has been deleted');
-        this.getCategories();
-      },
-      error: () => {
-        this.toastr.error('Failed to delete the category.');
-      }
+        next: () => {
+          this.toastr.success('The category has been deleted');
+          this.getCategories();
+        },
+        error: () => {
+          this.toastr.error('Failed to delete the category.');
+        }
       });
-    }
+    });
   }
 
   public searchCategory(searchTerm: string): void {    
