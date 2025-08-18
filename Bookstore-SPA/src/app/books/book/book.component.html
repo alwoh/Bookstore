@@ -1,1 +1,62 @@
-<p>book works!</p>
+<div class="container mt-4 d-flex justify-content-center">
+  <div class="w-50">
+    <h2 class="text-center">Manage Book</h2>
+    <form #form="ngForm" (submit)="onSubmit(bookForm)" #bookForm="ngForm">
+      <div class="form-group">
+        <label for="bookName" class="form-label fw-bold">Book Name:</label>
+        <input 
+        type="text" 
+        id="bookName" 
+        class="form-control" 
+        name="name" 
+        [(ngModel)]="book.name" 
+        #name="ngModel" 
+        required
+        minlength="3"
+        maxlength="150">
+        <div *ngIf="name.invalid && (name.dirty || name.touched)" class="text-danger">
+        <small *ngIf="name.errors?.['required']">Name is required.</small>
+        <small *ngIf="name.errors?.['minlength']">Name must be at least 3 characters long.</small>
+        <small *ngIf="name.errors?.['maxlength']">Name cannot exceed 150 characters.</small>
+        </div>        
+      </div>
+      <div class="form-group">
+        <label for="bookAuthor" class="form-label fw-bold">Author:</label>
+        <input 
+          type="text" 
+          id="bookAuthor" 
+          class="form-control" 
+          name="name" 
+          [(ngModel)]="book.author" 
+          #name="ngModel" 
+          required
+          minlength="3"
+          maxlength="100">
+        <div *ngIf="name.invalid && (name.dirty || name.touched)" class="text-danger">
+          <small *ngIf="name.errors?.['required']">Author is required.</small>
+          <small *ngIf="name.errors?.['minlength']">Author must be at least 3 characters long.</small>
+          <small *ngIf="name.errors?.['maxlength']">Author cannot exceed 100 characters.</small>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="bookDescription" class="form-label fw-bold">Description:</label>
+         <textarea
+          type="text" 
+          id="bookDescription" 
+          class="form-control" 
+          name="name" 
+          [(ngModel)]="book.description" 
+          #name="ngModel" 
+          required
+          minlength="3"
+          maxlength="150">
+         </textarea>
+        <div *ngIf="name.invalid && (name.dirty || name.touched)" class="text-danger">
+          <small *ngIf="name.errors?.['required']">Author is required.</small>
+          <small *ngIf="name.errors?.['minlength']">Author must be at least 3 characters long.</small>
+          <small *ngIf="name.errors?.['maxlength']">Author cannot exceed 100 characters.</small>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

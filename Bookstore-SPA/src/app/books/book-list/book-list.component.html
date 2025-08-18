@@ -40,8 +40,10 @@
               <td>{{ book.categoryName }}</td>
               <td>{{ book.publishDate | date:'mediumDate' }}</td>
               <td>
+                <div class="d-flex gap-2">
                   <button class="btn btn-warning btn-sm me-2" (click)="editBook(book.id)">Edit</button>
                   <button class="btn btn-danger btn-sm ms-2" (click)="deleteBook(book.id)">Delete</button>
+                </div>
               </td>
           </tr>
       </tbody>
