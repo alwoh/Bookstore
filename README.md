@@ -10,11 +10,12 @@ There's an application, domain, infrastructure, and SPA layers to this bookstore
 2. Install the latest [Node.js LTS](https://nodejs.org/en/)
 3. To run this application you'll first need to edit the database connection string under **Bookstore.API/appsettings.json** `ConnectionStrings->DefaultConnection`.
 4. Then navigate to the Bookstore.Infrastructure project folder and run `dotnet ef migrations add InitialCreate` then after apply it with `dotnet ef database update`
-5. Navigate to the solution folder `dotnet build` then to run navigate to the API project folder `dotnet run`
-   - This will supply Swagger UI to localhost:5001
+5. Navigate to the solution folder `dotnet build` then navigate to the API project folder `dotnet run`
+   - This will supply Swagger UI to **localhost:5001**
 6. To run Bookstore.SPA navigate to it's folder
    - first install Angular `npm install -g @angular/cli`
    - second run `ng s`
+   - This will use **localhost:4200** 
 
 **Tech used:** 
 <div align="center">
