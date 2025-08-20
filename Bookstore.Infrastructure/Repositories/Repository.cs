@@ -48,11 +48,12 @@ namespace Bookstore.Infrastructure.Repositories
         }
 
         public virtual async Task DeleteAsync(int id)
-        {
-            var entity = await GetByIdAsync(id);
+        {            
+            var entity = await GetByIdAsync(id);            
             if (entity != null)
             {
                 _dbSet.Remove(entity);
+                await SaveChangesAsync();
             }
         }
 

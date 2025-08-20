@@ -8,7 +8,7 @@
         type="text" 
         id="bookName" 
         class="form-control" 
-        name="name" 
+        name="bookName" 
         [(ngModel)]="book.name" 
         #name="ngModel" 
         required
@@ -26,16 +26,16 @@
           type="text" 
           id="bookAuthor" 
           class="form-control" 
-          name="name" 
+          name="bookAuthor" 
           [(ngModel)]="book.author" 
-          #name="ngModel" 
+          #author="ngModel" 
           required
           minlength="3"
           maxlength="100">
-        <div *ngIf="name.invalid && (name.dirty || name.touched)" class="text-danger">
-          <small *ngIf="name.errors?.['required']">Author is required.</small>
-          <small *ngIf="name.errors?.['minlength']">Author must be at least 3 characters long.</small>
-          <small *ngIf="name.errors?.['maxlength']">Author cannot exceed 100 characters.</small>
+        <div *ngIf="author.invalid && (author.dirty || author.touched)" class="text-danger">
+          <small *ngIf="author.errors?.['required']">Author is required.</small>
+          <small *ngIf="author.errors?.['minlength']">Author must be at least 3 characters long.</small>
+          <small *ngIf="author.errors?.['maxlength']">Author cannot exceed 100 characters.</small>
         </div>
       </div>
       <div class="form-group">
@@ -44,18 +44,32 @@
           type="text" 
           id="bookDescription" 
           class="form-control" 
-          name="name" 
+          name="bookDescription" 
           [(ngModel)]="book.description" 
-          #name="ngModel" 
-          required
+          #description="ngModel"           
           minlength="3"
           maxlength="150">
          </textarea>
-        <div *ngIf="name.invalid && (name.dirty || name.touched)" class="text-danger">
-          <small *ngIf="name.errors?.['required']">Author is required.</small>
-          <small *ngIf="name.errors?.['minlength']">Author must be at least 3 characters long.</small>
-          <small *ngIf="name.errors?.['maxlength']">Author cannot exceed 100 characters.</small>
+        <div *ngIf="description.invalid && (description.dirty || description.touched)" class="text-danger">          
+          <small *ngIf="description.errors?.['minlength']">Description must be at least 3 characters long.</small>
+          <small *ngIf="description.errors?.['maxlength']">Description cannot exceed 150 characters.</small>
         </div>
+      </div>
+      <div class="form-group">
+        <label for="bookCategory" class="form-label fw-bold">Category:</label>
+        <select class="form-select" id="bookCategory" name="bookCategory" #categoryId="ngModel"  [(ngModel)]="book.categoryId" required>                    
+          <option *ngFor="let category of categories" [ngValue]="category.id">
+              {{category.name}}
+          </option>
+        </select>
+        <div *ngIf="categoryId.invalid && (categoryId.dirty || categoryId.touched)" class="text-danger">          
+            <small *ngIf="categoryId.errors?.['required']">Category is required.</small>
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-center mt-3">
+        <button type="submit" class="btn btn-primary me-2" [disabled]="bookForm.invalid">Save</button>
+        <button type="button" class="btn btn-secondary ms-2" (click)="onCancel()">Cancel</button>
       </div>
     </form>
   </div>

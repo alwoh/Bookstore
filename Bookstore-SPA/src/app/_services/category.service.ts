@@ -28,7 +28,7 @@ export class CategoryService {
     return this.http.put<Category>(`${this.baseUrl}/${id}`, category);
   }
 
-  remove(id: number): Observable<Category> {
+  remove(id: number): Observable<Category> {        
     return this.http.delete<Category>(`${this.baseUrl}/${id}`);
   }
 

@@ -54,7 +54,7 @@ export class CategoryListComponent implements OnInit {
     this.router.navigate(['/category/' + categoryId]);
   }
 
-  public deleteCategory(categoryId: number) {
+  public deleteCategory(categoryId: number) {    
     this.confirmationDialogService.confirm('Do you really want to delete this category?').then(() => {
       this.service.remove(categoryId).subscribe({
         next: () => {

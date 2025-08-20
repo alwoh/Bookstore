@@ -50,7 +50,7 @@ namespace Bookstore.Domain.Services
 
 
         public async Task<bool> DeleteAsync(int id)
-        {
+        {            
             var category = await _categoryRepository.GetByIdAsync(id);
             if (category == null)
                 return false;
@@ -58,7 +58,7 @@ namespace Bookstore.Domain.Services
             var booksWithCategory = await _bookService.GetBooksByCategory(category.Id);
             if (booksWithCategory.Any())
                 return false;
-
+        
             await _categoryRepository.DeleteAsync(category.Id);    
             return true;
         }

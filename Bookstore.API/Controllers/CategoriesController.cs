@@ -43,7 +43,7 @@ namespace Bookstore.API.Controllers
             return Ok(_mapper.Map<ResultCategoryDto>(category));
         }
 
-         [HttpPost]
+        [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Add(AddCategoryDto categoryDto)
@@ -76,7 +76,7 @@ namespace Bookstore.API.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> Remove(int id)
-        {                        
+        {                                    
             var result = await _categoryService.DeleteAsync(id);
 
             if (!result) return BadRequest();

@@ -4,6 +4,6 @@ export class Book {
     author: string;
     description: string;
     value: number;
-    categoryName: string;
     publishDate: Date;
+    categoryId: number;
 }
