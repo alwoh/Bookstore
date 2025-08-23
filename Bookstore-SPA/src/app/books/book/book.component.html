@@ -66,7 +66,21 @@
             <small *ngIf="categoryId.errors?.['required']">Category is required.</small>
         </div>
       </div>
-
+      <div class="form-group">
+        <label for="publishDate" class="form-label fw-bold">Publish Date:</label>
+        <div class="input-group">
+          <input class="form-control" placeholder="Publish Date" id="publishDate" name="publishDate" ngbDatepicker
+            #d="ngbDatepicker" #publishDate="ngModel" [(ngModel)]="book.publishDate" class="form-control" type="text"
+            [(ngModel)]="book.publishDate" [minDate]="{year: 1800, month: 1, day: 1}"
+            [ngClass]="{'is-invalid': form.controls['publishDate']?.invalid && form.controls['publishDate']?.touched}"
+            required>
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d.toggle()" type="button"></button>
+          </div>
+          <div class="invalid-feedback" *ngIf="publishDate.invalid && publishDate.touched">Please inform the publish date
+          </div>
+        </div>
+      </div>      
       <div class="d-flex justify-content-center mt-3">
         <button type="submit" class="btn btn-primary me-2" [disabled]="bookForm.invalid">Save</button>
         <button type="button" class="btn btn-secondary ms-2" (click)="onCancel()">Cancel</button>

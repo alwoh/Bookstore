@@ -30,7 +30,15 @@ export class BookComponent {
       if (id && id > 0) {
         this.bookService.getById(id).subscribe({
           next: (book) => {
+            console.log(book.publishDate);
             this.book = book;
+            console.log(this.book.publishDate);
+            const publishDate =  new Date(book.publishDate);
+            let year = publishDate.getFullYear();
+            let month = String(publishDate.getMonth() + 1).padStart(2, '0');
+            let day = String(publishDate.getDate()).padStart(2, '0');
+
+            this.book.publishDate = {year : year, month: Number(month), day: Number(day)} as unknown as Date;
           },
           error: () => {
             this.toastr.error('Failed to load book.');
