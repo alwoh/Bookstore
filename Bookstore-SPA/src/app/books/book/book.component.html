@@ -67,6 +67,13 @@
         </div>
       </div>
       <div class="form-group">
+        <label for="value" class="form-label fw-bold">Value:</label>
+        <input name="value" #value="ngModel" [(ngModel)]="book.value" class="form-control" placeholder="Value"
+          type="number" [ngClass]="{'is-invalid': form.controls['value']?.invalid && form.controls['value']?.touched}"
+          required>
+        <div class="invalid-feedback" *ngIf="value.invalid && value.touched">Please inform the value</div>
+      </div>
+      <div class="form-group">
         <label for="publishDate" class="form-label fw-bold">Publish Date:</label>
         <div class="input-group">
           <input class="form-control" placeholder="Publish Date" id="publishDate" name="publishDate" ngbDatepicker

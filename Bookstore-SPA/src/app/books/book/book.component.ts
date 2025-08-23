@@ -29,16 +29,11 @@ export class BookComponent {
       const id = Number(params.get('id'));
       if (id && id > 0) {
         this.bookService.getById(id).subscribe({
-          next: (book) => {
-            console.log(book.publishDate);
-            this.book = book;
-            console.log(this.book.publishDate);
-            const publishDate =  new Date(book.publishDate);
-            let year = publishDate.getFullYear();
-            let month = String(publishDate.getMonth() + 1).padStart(2, '0');
-            let day = String(publishDate.getDate()).padStart(2, '0');
-
-            this.book.publishDate = {year : year, month: Number(month), day: Number(day)} as unknown as Date;
+          next: (book) => {            
+            this.book = book;         
+            console.log(this.book.publishDate);   
+            const publishDate =  new Date(book.publishDate);      
+            this.book.publishDate = this.formatDate(publishDate);
           },
           error: () => {
             this.toastr.error('Failed to load book.');
@@ -63,12 +58,13 @@ export class BookComponent {
     if (form.invalid) {
       this.toastr.error('Please fill out the form correctly.');
       return;
-    }
+    }                           
+     this.book.publishDate = this.formatDateForSubmission(this.book.publishDate);    
      if (this.book.id === 0) {
       this.bookService.add(this.book).subscribe({
         next: () => {
           this.toastr.success('Category added successfully!');
-          this.router.navigate(['/categories']);
+          this.router.navigate(['/books']);
         },
         error: () => {
           this.toastr.error('Failed to add book.');
@@ -76,12 +72,37 @@ export class BookComponent {
       });
      }
      else {
-      return;
+      this.bookService.update(this.book.id, this.book).subscribe({
+        next: () => {
+          this.toastr.success('Book updated successfully!');
+          this.router.navigate(['/books']);
+        },
+        error: () => {
+          this.toastr.error('Failed to update category.');
+        }
+      });
      }
     return;    
   }
 
   onCancel(): void {
     this.router.navigate(['/books']);
+  }
+
+  private formatDate(date: Date): Date {
+    let year = date.getFullYear();
+    let month = String(date.getMonth() + 1);
+    let day = String(date.getDate());
+
+    console.log(`${year}-${month}-${day}`);
+    return {year : year, month: Number(month), day: Number(day)} as unknown as Date;
+  }
+
+  private formatDateForSubmission(date: Object): Date {    
+    let year = (date as any).year;
+    let month = (date as any).month;
+    let day = (date as any).day;
+    
+    return new Date(`${year}-${month}-${day}`);
   }
 }

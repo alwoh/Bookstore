@@ -8,6 +8,7 @@ namespace Bookstore.API.Dtos.Book
         public string Description { get; set; }
         public decimal Value { get; set; }
         public int CategoryId { get; set; }
+        public string CategoryName { get; set; }
         public DateTime PublishDate { get; set; }
     }
 }
